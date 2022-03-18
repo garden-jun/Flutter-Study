@@ -15,6 +15,7 @@ class MyApp extends StatefulWidget {
 class _MyApp extends State<MyApp> {
   var switchValue = false;
   String test = 'hello'; // 버튼에 들어갈 텍스트 입력
+  Color _color = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +29,18 @@ class _MyApp extends State<MyApp> {
           body: Center(
               child: ElevatedButton(
                   child: Text('$test'),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(_color)),
                   onPressed: () {
-                    if (test == 'hello') {
+                    if (_color == Colors.blue) {
                       setState(() {
                         test = 'flutter';
+                        _color = Colors.amber;
                       });
                     } else {
                       setState(() {
-                        test = 'hello';
+                        test = 'flutter';
+                        _color = Colors.blue;
                       });
                     }
                   })),
