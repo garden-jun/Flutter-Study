@@ -31,7 +31,6 @@ class MaterialFlutterApp extends StatefulWidget {
 class _MaterialFlutterApp extends State<MaterialFlutterApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-    );
+    return Scaffold();
   }
 }
