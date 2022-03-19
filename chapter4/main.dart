@@ -33,10 +33,19 @@ class _MaterialFlutterApp extends State<MaterialFlutterApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Material Design App'),
+        title: Text('App'),
       ),
       floatingActionButton:
           FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
+      body: Container(
+        child: Center(
+          // 가로 정렬
+          child: Column(
+            children: <Widget>[Icon(Icons.android), Text('android')],
+            mainAxisAlignment: MainAxisAlignment.center, //세로로 정렬해주는 코드
+          ),
+        ),
+      ),
     );
   }
 }
