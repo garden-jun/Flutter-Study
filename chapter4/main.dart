@@ -7,43 +7,71 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material Flutter App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MaterialFlutterApp(),
+      title: '_title',
+      home: WidgetApp(),
     );
   }
 }
 
-class MaterialFlutterApp extends StatefulWidget {
-  const MaterialFlutterApp({Key? key}) : super(key: key);
+class WidgetApp extends StatefulWidget {
+  const WidgetApp({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _MaterialFlutterApp();
-  }
+  _WidgetExampleState createState() => _WidgetExampleState();
 }
 
-class _MaterialFlutterApp extends State<MaterialFlutterApp> {
+class _WidgetExampleState extends State<WidgetApp> {
+  String sum = '';
+  TextEditingController value1 = TextEditingController();
+  TextEditingController value2 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('App'),
+        title: Text('공학용 계산기'),
       ),
-      floatingActionButton:
-          FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
       body: Container(
         child: Center(
-          // 가로 정렬
-          child: Column(
-            children: <Widget>[Icon(Icons.android), Text('android')],
-            mainAxisAlignment: MainAxisAlignment.center, //세로로 정렬해주는 코드
-          ),
+          child: Column(children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: Text(
+                '근데 사칙연산만 됨 ㅋㅋ\n어차피 님들 공학용계산기로 사칙연산밖에 안하잖아요 ㅋㅋ\n\n\n\n결과: $sum',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: TextField(
+                  keyboardType: TextInputType.number, controller: value1),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: TextField(
+                  keyboardType: TextInputType.number, controller: value2),
+            ),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: ElevatedButton(
+                  child: Row(
+                    children: <Widget>[Icon(Icons.add), Text('더하기')],
+                  ),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.amber)),
+                  onPressed: () {
+                    setState(() {
+                      int result = int.parse(value1.value.text) +
+                          int.parse(value2.value.text);
+                      sum = '$result';
+                    });
+                  }),
+            ),
+          ]),
         ),
       ),
     );
